@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 
-<!DOCTYPE html>
-
 <html lang="es">
 <head>
 <meta charset="utf-8"/>
@@ -46,6 +44,31 @@ select option{background:#112541}.group-title:after{background:#394b68}.group-ma
 .toast{background:#fff1f3;color:#5a1524}.print-controls{background:#0d213f}
 .paper-header{border-color:#dd1839}.paper-brand-area{display:flex;align-items:center;gap:13px;min-width:0}.paper-logo{width:79px;height:79px;object-fit:contain;border-radius:50%;flex:none}.paper-brand{color:#102341;font-size:20px}.paper-brand b{color:#db163a}.paper-sub{color:#60728c}.paper-company{color:#556e86}.paper-id strong{color:#162d51}.paper-title{color:#b41836}.paper-info{background:#edf2fa}.paper-info dt{color:#657995}.paper-table th{background:#172d51;color:#fff}.paper-table th:last-child,.paper-table td:last-child{text-align:left}.paper-table tbody tr:nth-child(even){background:#f5f7fc}.paper-totals .paper-grand{border-top-color:#c51a3c;color:#b41836}.paper-foot{color:#586b85}
 @media(max-width:620px){.brand-logo{width:57px;height:57px}.brand-name{font-size:15px}.brand-sub{font-size:8px;letter-spacing:1px}.brand{gap:9px}.brand-name{white-space:nowrap}.top-actions .btn{font-size:10px;padding:9px 8px}.paper-logo{width:57px;height:57px}.paper-brand{font-size:15px}.paper-brand-area{gap:7px}.paper-sub{font-size:8px;letter-spacing:1px}.paper-header{align-items:center}.paper-totals{max-width:100%}.panel-pad{padding:16px}.general-cost-field{padding:12px}}
+
+/* v4: precio individual y servicios adicionales; conserva la identidad azul marino / rojo. */
+.service-price-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 13px 13px 45px}
+.service-price-row>label{color:#b8c9e0;font-size:12px;font-weight:750}
+.service-price-row .money-input{width:136px;flex:none;border-color:#a63b58;background:#06152b}
+.service-price-row .money-input:focus-within{box-shadow:0 0 0 2px #ec405431}
+.service-price-row .money-input input{width:100%;min-width:0;font-size:15px;font-weight:850;text-align:right}
+.service-card:not(.selected) .service-price-row{opacity:.78}
+.extra-service-panel{margin-top:18px;padding:16px;background:linear-gradient(130deg,#152d4f,#241c38);border:1px dashed #80546d;border-radius:14px}
+.extra-service-title{color:#fff;font-size:15px;font-weight:900}
+.extra-service-panel .tiny{margin:6px 0 12px;color:#b7c8db}
+.custom-add{display:grid;grid-template-columns:minmax(0,1fr) 108px auto;gap:9px;align-items:center;margin-top:0}
+.new-service-price{display:flex;align-items:center;border:1px solid #76425b;background:#07172d;border-radius:10px;height:44px;overflow:hidden}
+.new-service-price span{padding-left:11px;color:#ff9aaa;font-weight:900}
+.new-service-price input{min-width:0;border:0;background:transparent;width:100%;padding:10px 5px;color:#fff;font-weight:800;outline:none}
+.service-sum-card{border:1px solid #3f5678;padding:14px;border-radius:13px;background:#132641;margin-bottom:20px}
+.sum-label{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;color:#c9d6e8;padding:6px 0}
+.sum-label strong{color:#fff;font-variant-numeric:tabular-nums;font-size:14px}
+#legacyNote{margin:10px 0 0;color:#ffced6}
+.selected-breakdown{display:grid;gap:8px;margin-top:9px}
+.selected-breakdown>div{display:flex;justify-content:space-between;align-items:baseline;gap:9px;border-top:1px solid #314a68;padding-top:6px}
+.selected-breakdown span{min-width:0}.selected-breakdown strong{color:#fff;flex:none;white-space:nowrap}
+.paper-table th:last-child,.paper-table td:last-child{text-align:right;white-space:nowrap;width:110px}
+@media(max-width:620px){.custom-add{grid-template-columns:minmax(0,1fr) 108px}.custom-add .btn{grid-column:1/-1;width:100%}.service-price-row{padding-left:45px}.service-price-row .money-input{width:132px}}
+@media(max-width:355px){.service-price-row{padding-left:13px}.service-price-row .money-input{width:119px}.custom-add{grid-template-columns:1fr}.new-service-price{width:100%}}
 </style>
 </head>
 <body>
@@ -55,7 +78,7 @@ select option{background:#112541}.group-title:after{background:#394b68}.group-ma
 <div class="top-actions"><button class="btn small" id="installBtn" title="Instalar la aplicación" type="button">＋ Instalar app</button></div>
 </header>
 <nav aria-label="Secciones" class="nav"><button class="active" data-tab="order" type="button">＋ Nueva orden</button><button data-tab="history" type="button">▤ Historial</button><button data-tab="settings" type="button">⚙ Ajustes</button></nav>
-<section class="hero"><div class="eyebrow">● REGISTRO DE TRABAJOS · CAR WASH EXPRESS</div><h1>Cada detalle cuenta.</h1><p>Selecciona los servicios realizados, registra un solo costo general y entrega un comprobante claro y profesional.</p><div class="hero-metrics"><div class="metric"><strong id="statOrders">0</strong><span>Órdenes guardadas</span></div><div class="metric"><strong id="statMonth">Q 0.00</strong><span>Total del mes</span></div><div class="metric"><strong id="statOpen">0</strong><span>Sin entregar</span></div></div></section>
+<section class="hero"><div class="eyebrow">● REGISTRO DE TRABAJOS · CAR WASH EXPRESS</div><h1>Cada detalle cuenta.</h1><p>Selecciona los trabajos realizados, asigna el precio a cada servicio y obtén el total automáticamente para entregar un comprobante profesional.</p><div class="hero-metrics"><div class="metric"><strong id="statOrders">0</strong><span>Órdenes guardadas</span></div><div class="metric"><strong id="statMonth">Q 0.00</strong><span>Total del mes</span></div><div class="metric"><strong id="statOpen">0</strong><span>Sin entregar</span></div></div></section>
 <div class="tab-pane active" id="orderTab">
 <div class="grid-main"><div>
 <section class="panel"><div class="panel-pad"><div class="section-head"><div><h2>01 / Datos del servicio</h2><p id="orderFolio">Nueva orden · sin guardar</p></div><span class="pill cyan" id="statusPill">BORRADOR</span></div>
@@ -65,20 +88,20 @@ select option{background:#112541}.group-title:after{background:#394b68}.group-ma
 <div class="field"><label for="customer">Propietario</label><input autocomplete="name" data-field="customer" id="customer" placeholder="Nombre del propietario"/></div>
 <div class="field"><label for="vehicleType">Tipo de vehículo</label><select data-field="vehicleType" id="vehicleType"><option value="Sedán">Sedán</option><option value="Pickup">Pickup</option><option value="SUV / camioneta">SUV / camioneta</option><option value="Microbús">Microbús</option><option value="Otro">Otro</option></select></div>
 </div></div></section>
-<section class="panel stack-gap"><div class="panel-pad"><div class="section-head"><div><h2>02 / Trabajos realizados</h2><p>Marca lo que se realizó. El cobro se indica una sola vez en el resumen.</p></div><span class="pill" id="itemCount">0 marcados</span></div>
+<section class="panel stack-gap"><div class="panel-pad"><div class="section-head"><div><h2>02 / Trabajos realizados</h2><p>Marca los servicios realizados y escribe el precio de cada uno en quetzales.</p></div><span class="pill" id="itemCount">0 marcados</span></div>
 <div id="servicesList"></div>
-<div class="custom-add"><input aria-label="Nombre del servicio personalizado" id="newServiceName" maxlength="95" placeholder="Otro trabajo: escribe el nombre…" type="text"/><button class="btn small" id="addServiceBtn" type="button">＋ Agregar</button></div>
+<div class="extra-service-panel">
+<div class="extra-service-title">＋ Agregar otro servicio</div>
+<p class="tiny">Escribe el nombre y el precio. Se añadirá a esta orden y se sumará automáticamente.</p>
+<div class="custom-add"><input aria-label="Nombre del nuevo servicio" id="newServiceName" maxlength="95" placeholder="Nombre del servicio…" type="text"/><label class="new-service-price" for="newServicePrice"><span>Q</span><input aria-label="Precio del nuevo servicio en quetzales" id="newServicePrice" inputmode="decimal" min="0" placeholder="0.00" step="0.01" type="number"/></label><button class="btn small primary" id="addServiceBtn" type="button">＋ Agregar</button></div>
+</div>
 </div></section>
 <section class="panel stack-gap"><div class="panel-pad"><div class="section-head"><div><h2>03 / Detalles finales</h2><p>Información que completará la orden de servicio.</p></div></div>
 <div class="formgrid"><div class="field"><label for="paymentMethod">Forma de pago</label><select data-field="paymentMethod" id="paymentMethod"><option>Efectivo</option><option>Transferencia</option><option>Tarjeta</option><option>Mixto</option></select></div><div class="field"><label for="deliveryDate">Fecha de entrega (opcional)</label><input data-field="deliveryDate" id="deliveryDate" type="date"/></div><div class="field wide"><label for="notes">Observaciones para el cliente (saldrán impresas)</label><textarea data-field="notes" id="notes" placeholder="Ej. Se realizó limpieza profunda de tapicería y tratamiento de protección."></textarea></div></div>
 </div></section>
 </div>
-<aside class="side"><section class="panel"><div class="panel-pad"><div class="summary-top"><h2>Resumen de cobro</h2><p>Importe único para esta orden</p></div>
-<div class="field general-cost-field">
-<label for="generalCost">Costo general (Q)</label>
-<div class="money-input"><span>Q</span><input aria-label="Costo general a cobrar" data-field="generalCost" id="generalCost" inputmode="decimal" min="0" placeholder="0.00" step="0.01" type="number" value="0"/></div>
-<div class="tiny">Un solo monto por todos los trabajos seleccionados.</div>
-</div>
+<aside class="side"><section class="panel"><div class="panel-pad"><div class="summary-top"><h2>Resumen de cobro</h2><p>Suma automática de los servicios seleccionados</p></div>
+<div class="service-sum-card"><div class="sum-label"><span>Servicios marcados</span><strong id="summaryServices">0</strong></div><div class="sum-label"><span>Subtotal de servicios</span><strong id="subtotalServices">Q 0.00</strong></div><p class="tiny" id="legacyNote" hidden>Esta orden fue creada con un monto general. Se conserva su total anterior hasta que ingreses precios individuales.</p></div>
 <div class="total-label">TOTAL A COBRAR</div>
 <div class="grand-total" id="grandTotal">Q 0.00</div>
 
@@ -120,28 +143,29 @@ const BASE_PREFS={name:'Car Wash Express',phone:'',address:'',footer:'¡Gracias 
 let prefs={...BASE_PREFS,...readJSON(STORE.prefs,{})};
 let orders=readJSON(STORE.orders,[]);if(!Array.isArray(orders))orders=[];
 let toastTimer=0;let deferredInstall=null;let currentReceipt=null;
-function blankOrder(){return {id:'',date:today(),customer:'',vehicleType:'Sedán',status:'Pendiente',paymentMethod:'Efectivo',deliveryDate:'',notes:'',generalCost:0,items:TEMPLATES.map(t=>({...t,selected:false}))}}
+function blankOrder(){return {id:'',date:today(),customer:'',vehicleType:'Sedán',status:'Pendiente',paymentMethod:'Efectivo',deliveryDate:'',notes:'',items:TEMPLATES.map(t=>({...t,selected:false,price:0}))}}
 function normalizeOrder(raw){
  const out={...blankOrder(),...(raw||{})};
  if(!Array.isArray(out.items))out.items=blankOrder().items;
- out.items=out.items.filter(v=>v&&typeof v.name==='string').slice(0,150).map(v=>({id:String(v.id||'custom'),name:safeName(v.name),category:String(v.category||'Otros servicios'),selected:!!v.selected}));
- if(raw && !Object.prototype.hasOwnProperty.call(raw,'generalCost')){
-   // Conserva lo cobrado en las órdenes de la versión anterior.
-   const previous=(raw.items||[]).filter(i=>i&&i.selected).reduce((a,i)=>a+n(i.price),0);
-   out.generalCost=Math.max(0,previous-n(raw.discount));
- }
- out.generalCost=n(out.generalCost);
- // Las órdenes antiguas mantienen su importe, pero ya no conservan abonos ni saldos.
- delete out.paid;delete out.balance;delete out.change;delete out.discount;delete out.cost;
+ const original=out.items;
+ const anyPricedField=original.some(item=>item&&Object.prototype.hasOwnProperty.call(item,'price'));
+ out.items=original.filter(v=>v&&typeof v.name==='string').slice(0,150).map(v=>({id:String(v.id||'custom'),name:safeName(v.name),category:String(v.category||'Otros servicios'),selected:!!v.selected,price:Math.round(n(v.price)*100)/100}));
+ // Los comprobantes de la versión anterior se conservan sin inventar precios por trabajo.
+ const wasGeneral=raw&&Object.prototype.hasOwnProperty.call(raw,'generalCost');
+ const previousTotal=wasGeneral?n(raw.generalCost):0;
+ out.legacyPricing=!!(raw?.legacyPricing || (!anyPricedField && wasGeneral && previousTotal>0));
+ if(out.legacyPricing){out.legacyTotal=n(raw?.legacyTotal??previousTotal)}
+ else {delete out.legacyTotal}
+ delete out.generalCost;delete out.paid;delete out.balance;delete out.change;delete out.discount;delete out.cost;
  return out;
 }
 orders=orders.map(normalizeOrder);
 let order=normalizeOrder(readJSON(STORE.draft,null)||blankOrder());
 function totals(o){
  const selected=(o.items||[]).filter(i=>i.selected);
- const legacy=selected.reduce((a,i)=>a+n(i.price),0);
- const total=Object.prototype.hasOwnProperty.call(o,'generalCost')?n(o.generalCost):Math.max(0,legacy-n(o.discount));
- return {selected,total,generalCost:total};
+ const subtotal=selected.reduce((a,i)=>a+Math.round(n(i.price)*100),0)/100;
+ const total=o.legacyPricing?n(o.legacyTotal):subtotal;
+ return {selected,subtotal,total,legacyPricing:!!o.legacyPricing};
 }
 function toast(msg){const el=$('#toast');el.textContent=msg;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),3000)}
 function draft(){saveJSON(STORE.draft,order)}
@@ -150,23 +174,26 @@ function renderServices(){
  const host=$('#servicesList');
  const groups=[...new Set(order.items.map(i=>i.category))];
  const icons={'Limpieza interior':'✦','Restauración y protección':'✧','Exterior y pintura':'◈','Otros servicios':'＋'};
- host.innerHTML=groups.map(group=>`<div class="service-block"><h3 class="group-title"><span class="group-marker">${icons[group]||'＋'}</span>${txt(group)}</h3>${order.items.map((item,idx)=>item.category===group?`<article class="service-card ${item.selected?'selected':''}" data-service-card="${idx}"><div class="service-head"><label class="check"><input type="checkbox" data-index="${idx}" data-sfield="selected" ${item.selected?'checked':''}><span class="service-name">${txt(item.name)}</span></label>${String(item.id).startsWith('custom-')?`<button class="remove-service" data-remove="${idx}" type="button" title="Quitar servicio">×</button>`:''}</div></article>`:'').join('')}</div>`).join('');
+ host.innerHTML=groups.map(group=>`<div class="service-block"><h3 class="group-title"><span class="group-marker">${icons[group]||'＋'}</span>${txt(group)}</h3>${order.items.map((item,idx)=>item.category===group?`<article class="service-card ${item.selected?'selected':''}" data-service-card="${idx}"><div class="service-head"><label class="check"><input type="checkbox" data-index="${idx}" data-sfield="selected" ${item.selected?'checked':''}><span class="service-name">${txt(item.name)}</span></label>${String(item.id).startsWith('custom-')?`<button aria-label="Eliminar ${txt(item.name)}" class="remove-service" data-remove="${idx}" type="button" title="Quitar servicio">×</button>`:''}</div><div class="service-price-row"><label for="price-${idx}">Precio del servicio</label><div class="money-input service-amount"><span>Q</span><input id="price-${idx}" aria-label="Precio de ${txt(item.name)}" data-index="${idx}" data-sfield="price" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00" value="${n(item.price)}" /></div></div></article>`:'').join('')}</div>`).join('');
 }
 function updateSummary(){
  const t=totals(order);
  $('#itemCount').textContent=`${t.selected.length} marcados`;
+ $('#summaryServices').textContent=String(t.selected.length);
+ $('#subtotalServices').textContent=money(t.subtotal);
  $('#grandTotal').textContent=money(t.total);
- $('#selectedNames').innerHTML=t.selected.length?`<b>Servicios incluidos:</b> ${t.selected.map(i=>txt(i.name)).join(' · ')}`:'Aún no has marcado servicios.';
+ $('#legacyNote').hidden=!t.legacyPricing;
+ $('#selectedNames').innerHTML=t.selected.length?`<b>Servicios incluidos:</b><div class="selected-breakdown">${t.selected.map(i=>`<div><span>${txt(i.name)}</span><strong>${t.legacyPricing?'—':money(i.price)}</strong></div>`).join('')}</div>`:'Aún no has marcado servicios.';
  $('#statusPill').textContent=order.id?order.status.toUpperCase():'BORRADOR';
 }
 function notifyInput(e){
  const el=e.target;
- if(el.dataset.field){let v=el.value;const f=el.dataset.field;if(f==='generalCost')v=n(v);order[f]=v;draft();updateSummary();}
- if(el.dataset.sfield){const i=Number(el.dataset.index);if(!order.items[i])return;let f=el.dataset.sfield;order.items[i][f]=f==='selected'?el.checked:n(el.value);const card=el.closest('.service-card');if(f==='selected'&&card)card.classList.toggle('selected',el.checked);draft();updateSummary();}
+ if(el.dataset.field){let v=el.value;order[el.dataset.field]=v;draft();updateSummary();}
+ if(el.dataset.sfield){const i=Number(el.dataset.index);if(!order.items[i])return;let f=el.dataset.sfield;order.items[i][f]=f==='selected'?el.checked:Math.round(n(el.value)*100)/100;if(order.legacyPricing){order.legacyPricing=false;delete order.legacyTotal;}const card=el.closest('.service-card');if(f==='selected'&&card)card.classList.toggle('selected',el.checked);draft();updateSummary();}
 }
 function saveOrder(){if(!totals(order).selected.length){toast('Marca al menos un servicio antes de guardar.');return false}if(!order.id){let s=Number(localStorage.getItem(STORE.seq))||1;if(!Number.isFinite(s)||s<1)s=1;while(orders.some(x=>x.id===`DET-${String(s).padStart(4,'0')}`))s++;order.id=`DET-${String(s).padStart(4,'0')}`;localStorage.setItem(STORE.seq,String(s+1));order.createdAt=new Date().toISOString()}order.updatedAt=new Date().toISOString();const index=orders.findIndex(x=>x.id===order.id);if(index>=0)orders[index]=structuredClone(order);else orders.push(structuredClone(order));if(!saveJSON(STORE.orders,orders))return false;draft();$('#orderFolio').textContent=`Orden ${order.id} · editable`;$('#statusPill').textContent=order.status.toUpperCase();refreshStats();toast(`Orden ${order.id} guardada`);return true}
 function newOrder(){if(!confirm('¿Comenzar una nueva orden? Los cambios no guardados de esta orden se descartarán.'))return;order=blankOrder();draft();refreshOrderFields();switchTab('order');window.scrollTo({top:0,behavior:'smooth'})}
-function addService(){const input=$('#newServiceName');const name=safeName(input.value.trim());if(!name){toast('Escribe el nombre del trabajo adicional.');input.focus();return}order.items.push({id:'custom-'+Date.now()+'-'+Math.floor(Math.random()*9999),name,category:'Otros servicios',selected:true});input.value='';renderServices();updateSummary();draft();toast('Servicio agregado')}
+function addService(){const input=$('#newServiceName');const priceInput=$('#newServicePrice');const name=safeName(input.value.trim());if(!name){toast('Escribe el nombre del servicio adicional.');input.focus();return}if(priceInput.value.trim()===''||Number(priceInput.value)<0||!Number.isFinite(Number(priceInput.value))){toast('Ingresa un precio válido para este servicio.');priceInput.focus();return}const price=Math.round(n(priceInput.value)*100)/100;order.items.push({id:'custom-'+Date.now()+'-'+Math.floor(Math.random()*9999),name,category:'Otros servicios',selected:true,price});if(order.legacyPricing){order.legacyPricing=false;delete order.legacyTotal;}input.value='';priceInput.value='';renderServices();updateSummary();draft();toast('Servicio agregado al total')}
 function refreshStats(){const now=today().slice(0,7);$('#statOrders').textContent=orders.length;$('#statMonth').textContent=money(orders.filter(o=>String(o.date||'').slice(0,7)===now).reduce((a,o)=>a+totals(o).total,0));$('#statOpen').textContent=orders.filter(o=>o.status!=='Entregado').length;$('#historyCount').textContent=`${orders.length} órdenes`}
 function switchTab(tab){$$('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));for(const name of ['order','history','settings'])$(`#${name}Tab`).classList.toggle('active',tab===name);if(tab==='history')renderHistory();if(tab==='settings')refreshPrefs();window.scrollTo({top:0,behavior:'smooth'})}
 function renderHistory(){
@@ -181,10 +208,10 @@ if(action==='print'){showPreview(original)}if(action==='copy'){order=normalizeOr
 if(action==='delete'&&confirm(`¿Eliminar permanentemente la orden ${original.id}?`)){orders.splice(idx,1);saveJSON(STORE.orders,orders);if(order.id===original.id){order=blankOrder();draft();refreshOrderFields()}renderHistory();refreshStats();toast('Orden eliminada')}}
 function receiptHTML(o){
  const t=totals(o),company=txt(prefs.name||'Car Wash Express'),contact=[prefs.phone,prefs.address].filter(Boolean).map(txt).join(' · ');
- const lines=t.selected.map(i=>`<tr><td>✓ &nbsp;${txt(i.name)}</td></tr>`).join('');
+ const lines=t.selected.map(i=>`<tr><td>✓ &nbsp;${txt(i.name)}</td><td>${t.legacyPricing?'—':money(i.price)}</td></tr>`).join('');
  const note=String(o.notes||'').trim();
  const logo=$('#brandLogo').src;
- return `<div class="paper-header"><div class="paper-brand-area"><img class="paper-logo" src="${logo}" alt="Logo Car Wash Express"><div><div class="paper-brand">${company.replace(/express/ig,m=>'<b>'+m+'</b>')}</div><div class="paper-sub">DETALLADO AUTOMOTRIZ</div>${contact?`<div class="paper-company">${contact}</div>`:''}</div></div><div class="paper-id"><strong>${txt(o.id||'VISTA PREVIA')}</strong><small>Fecha: ${prettyDate(o.date)}<br>Estado: ${txt(o.status||'Pendiente')}</small></div></div><div class="paper-title">COMPROBANTE DE SERVICIO</div><dl class="paper-info"><div><dt>Propietario</dt><dd>${txt(o.customer||'No especificado')}</dd></div><div><dt>Tipo de vehículo</dt><dd>${txt(o.vehicleType||'No especificado')}</dd></div></dl><table class="paper-table"><thead><tr><th>Servicios realizados</th></tr></thead><tbody>${lines||'<tr><td>Sin servicios marcados</td></tr>'}</tbody></table><div class="paper-totals"><div><span>Costo general</span><strong>${money(t.generalCost)}</strong></div><div class="paper-grand"><span>TOTAL A COBRAR</span><strong>${money(t.total)}</strong></div><div><span>Forma de pago</span><strong>${txt(o.paymentMethod||'—')}</strong></div></div>${note?`<div class="paper-notes"><strong>Observaciones:</strong>
+ return `<div class="paper-header"><div class="paper-brand-area"><img class="paper-logo" src="${logo}" alt="Logo Car Wash Express"><div><div class="paper-brand">${company.replace(/express/ig,m=>'<b>'+m+'</b>')}</div><div class="paper-sub">DETALLADO AUTOMOTRIZ</div>${contact?`<div class="paper-company">${contact}</div>`:''}</div></div><div class="paper-id"><strong>${txt(o.id||'VISTA PREVIA')}</strong><small>Fecha: ${prettyDate(o.date)}<br>Estado: ${txt(o.status||'Pendiente')}</small></div></div><div class="paper-title">COMPROBANTE DE SERVICIO</div><dl class="paper-info"><div><dt>Propietario</dt><dd>${txt(o.customer||'No especificado')}</dd></div><div><dt>Tipo de vehículo</dt><dd>${txt(o.vehicleType||'No especificado')}</dd></div></dl><table class="paper-table"><thead><tr><th>Servicios realizados</th><th>Precio</th></tr></thead><tbody>${lines||'<tr><td colspan="2">Sin servicios marcados</td></tr>'}</tbody></table><div class="paper-totals"><div class="paper-grand"><span>TOTAL A COBRAR</span><strong>${money(t.total)}</strong></div><div><span>Forma de pago</span><strong>${txt(o.paymentMethod||'—')}</strong></div></div>${note?`<div class="paper-notes"><strong>Observaciones:</strong>
 ${txt(note)}</div>`:''}<div class="signature">Recibido / conformidad del cliente</div><div class="paper-foot">${txt(prefs.footer||'¡Gracias por tu preferencia!')}<br>Comprobante de servicio. No sustituye una factura fiscal.</div>`;
 }
 function showPreview(o){currentReceipt=normalizeOrder(structuredClone(o));$('#receiptPaper').innerHTML=receiptHTML(currentReceipt);$('#printOverlay').classList.add('open');document.body.classList.add('body-locked')}
@@ -195,8 +222,8 @@ function savePrefs(){for(const el of $$('[data-pref]'))prefs[el.dataset.pref]=sa
 function download(name,content,type){const blob=new Blob([content],{type});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000)}
 function exportBackup(){const content={format:'CarWashExpressDetailingBackup',version:1,exportedAt:new Date().toISOString(),orders,prefs,seq:Number(localStorage.getItem(STORE.seq))||1};download(`CWE_Detailing_Respaldo_${today()}.json`,JSON.stringify(content,null,2),'application/json');toast('Respaldo descargado')}
 function exportCsv(){
- const header=['Folio','Fecha','Propietario','Tipo de vehículo','Estado','Servicios realizados','Costo general (Q)','Total a cobrar (Q)','Forma de pago','Observaciones'];
- const rows=orders.map(o=>{const t=totals(o);return [o.id,o.date,o.customer,o.vehicleType,o.status,t.selected.map(i=>i.name).join(' | '),t.generalCost,t.total,o.paymentMethod,o.notes]});
+ const header=['Folio','Fecha','Propietario','Tipo de vehículo','Estado','Servicios realizados','Precios de servicios (Q)','Total a cobrar (Q)','Forma de pago','Observaciones'];
+ const rows=orders.map(o=>{const t=totals(o);return [o.id,o.date,o.customer,o.vehicleType,o.status,t.selected.map(i=>i.name).join(' | '),t.legacyPricing?'Sin desglose anterior':t.selected.map(i=>money(i.price)).join(' | '),t.total,o.paymentMethod,o.notes]});
  const esc=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
  const csv='\uFEFF'+[header,...rows].map(row=>row.map(esc).join(';')).join('\r\n');
  download(`CWE_Detailing_Ordenes_${today()}.csv`,csv,'text/csv;charset=utf-8');toast('CSV descargado');
@@ -206,7 +233,7 @@ window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredIns
 $$('[data-tab]').forEach(btn=>btn.addEventListener('click',()=>switchTab(btn.dataset.tab)));
 $('#orderTab').addEventListener('input',notifyInput);$('#orderTab').addEventListener('change',notifyInput);
 $('#servicesList').addEventListener('click',e=>{const b=e.target.closest('[data-remove]');if(!b)return;order.items.splice(Number(b.dataset.remove),1);renderServices();draft();updateSummary()});
-$('#addServiceBtn').addEventListener('click',addService);$('#newServiceName').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addService()}});
+$('#addServiceBtn').addEventListener('click',addService);for(const id of ['newServiceName','newServicePrice'])$(`#${id}`).addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addService()}});
 $('#saveBtn').addEventListener('click',saveOrder);
 $('#savePrintBtn').addEventListener('click',()=>{if(saveOrder())doPrint(order)});
 $('#previewBtn').addEventListener('click',()=>showPreview(order));

@@ -1,0 +1,16 @@
+CAR WASH EXPRESS | DETAILING - VERSION 4
+
+NOVEDADES:
+- Precio individual por servicio; suma automática solo los marcados.
+- Crear servicios adicionales con nombre y precio.
+- Comprobante muestra desglose por servicio y total.
+- Conserva el diseño azul marino y rojo, el logo y el historial existente.
+- Las órdenes anteriores que tenían un importe general conservan el monto original sin inventar precios individuales. Al editar precios se recalcula el total.
+
+ACTUALIZAR EN GITHUB PAGES:
+1. Antes de actualizar, en Ajustes descarga un respaldo JSON.
+2. Sube los archivos index.html, service-worker.js y manifest.webmanifest a la RAIZ de tu repositorio y confirma los cambios.
+3. Si ya tienes los iconos no necesitas volverlos a subir; se incluyen en el ZIP.
+4. Abre tu web y recarga la página.
+
+AVISO: el historial se guarda en el dispositivo/navegador. Evita borrar datos de la aplicación; conserva respaldos.
