@@ -1,8 +1,8 @@
 /* Car Wash Express | Detailing
-   v6: navigation network-first, bypass browser HTTP cache, and offline fallback.
+   v7: navigation network-first, bypass browser HTTP cache, and offline fallback.
    Application records live in localStorage and are never altered here.
 */
-const CACHE_NAME = 'cwe-detailing-v6-historial';
+const CACHE_NAME = 'cwe-detailing-v7-nueva-orden';
 const SHELL = [
   './index.html',
   './manifest.webmanifest',
